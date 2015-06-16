@@ -7,16 +7,16 @@ graffiti_csv = open('Graffiti_Removal.csv',"rU")
 graffiti_reader = csv.reader(graffiti_csv)
 
 		
-g_communityArea=[]
+graffitiCommunityArea=[]
 
 
 for row in graffiti_reader:
-	g_communityArea.append(row[6])
+	graffitiCommunityArea.append(row[6])
 	
-counter1=collections.Counter(g_communityArea)
+counter1=collections.Counter(graffitiCommunityArea)
 #print(counter.keys())
-print "counter of Graffiti"
-print(counter1.most_common(77))
+#print "counter of Graffiti"
+#print(counter1.most_common(77))
 
 
 
@@ -24,16 +24,24 @@ crimes_csv = open('Crimes.csv',"rU")
 crimes_reader = csv.reader(crimes_csv)
 
 		
-c_communityArea=[]
+crimeCommunityArea=[]
 
 
 for row in crimes_reader:
-	c_communityArea.append(row[4])
-counter2=collections.Counter(c_communityArea)
+	crimeCommunityArea.append(row[4])
 
+counter2=collections.Counter(crimeCommunityArea)
+#counter2.most_common(5)
 #print(counter.keys())
-print "counter of Crimes"
-print (counter2.most_common(5))
+
+def sortByKey():
+	sortByKeyDict = sorted(counter2.items(), key= lambda t: t[0])
+	print sortByKeyDict
+
+sortByKey()
+#print "counter of Crimes" 
+#for key,value in counter2.items():
+	#print ("{value}".format(value=key))
 
 
 
