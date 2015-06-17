@@ -1,5 +1,6 @@
 import csv
 import collections
+import numpy
 
 # read graffiti date and community area
 
@@ -72,6 +73,17 @@ graffitiAreaList= gCounter.values()
 
 print len(graffitiAreaList), len(crimeAreaList)
 
+result = {}
+
+'''for key in (cCounter.viewkeys() | gCounter.keys()):
+    if key in cCounter: result.setdefault(key, []).append(cCounter[key])
+    if key in gCounter: result.setdefault(key, []).append(gCounter[key])
+
+print result'''
+
+
+p=numpy.corrcoef(crimeAreaList, graffitiAreaList)[0, 1]
+print p
 #for n in  range(1,78):
  #   list.append(cCounter[n], gCounter[n])
 
