@@ -1,7 +1,10 @@
 import csv
 import collections
 
-#def graffiti (self): # reading graffiti date and community area
+# read graffiti date and community area
+
+id_CommunityArea=(range(1,78))
+
 
 def graffitiCommunityArea(): 
 
@@ -9,15 +12,14 @@ def graffitiCommunityArea():
 	graffiti_reader = csv.reader(graffiti_csv)
 		
 	gCommunityArea=[]
-
 	for row in graffiti_reader:
 		gCommunityArea.append(row[6])
 
 	return  gCommunityArea
 
-
 	
 gCounter=collections.Counter(graffitiCommunityArea())
+#print gCounter
 #print(gCounter.keys())
 #print "counter of Graffiti"
 #print(gCounter.most_common(77))
@@ -44,16 +46,33 @@ cCounter=collections.Counter(crimeCommunityArea())
 
 def sortByKey(self):
 	sortByKeyDict = sorted(self.items(), key= lambda t: t[0])
-	print sortByKeyDict
+	return sortByKeyDict
 
-sortByKey(cCounter)
 
+
+#x=sortByKey(cCounter)
+#y=sortByKey(gCounter)
+
+
+#for n in  range(1,78):
+ #  list.append(gCounter[n], cCounter[n])
+
+#for top in x: 
+	#print(top) 
+#	for inner in top: 
+#		print(inner) 
+#y=[z for z in x]
 
 #print "counter of Crimes" 
 #for key,value in cCounter.items():
 	#print ("{value}".format(value=key))
 
+crimeAreaList= cCounter.values()
+graffitiAreaList= gCounter.values()
 
+print len(graffitiAreaList), len(crimeAreaList)
 
+#for n in  range(1,78):
+ #   list.append(cCounter[n], gCounter[n])
 
 
