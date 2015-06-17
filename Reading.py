@@ -4,9 +4,6 @@ import numpy
 
 # read graffiti date and community area
 
-id_CommunityArea=(range(1,78))
-
-
 def graffitiCommunityArea(): 
 
 	graffiti_csv = open('Graffiti_Removal.csv',"rU")
@@ -18,12 +15,6 @@ def graffitiCommunityArea():
 
 	return  gCommunityArea
 
-	
-gCounter=collections.Counter(graffitiCommunityArea())
-#print gCounter
-#print(gCounter.keys())
-#print "counter of Graffiti"
-#print(gCounter.most_common(77))
 
 def crimeCommunityArea():
 		
@@ -37,54 +28,38 @@ def crimeCommunityArea():
 
 	return 	cCommunityArea
 
+ 	
+def main():
+		
+	#id_CommunityArea=(range(1,78))
 
-cCounter=collections.Counter(crimeCommunityArea())
-	#cCounter.most_common(5)
-	#print(counter.keys())
+	gCounter=collections.Counter(graffitiCommunityArea())	
+	print " The top 5 community areas have the highest no. of removal requests are ", (gCounter.most_common(5))
 
-
-
-
-def sortByKey(self):
-	sortByKeyDict = sorted(self.items(), key= lambda t: t[0])
-	return sortByKeyDict
-
+	cCounter=collections.Counter(crimeCommunityArea())
+	print " The top 5 community areas have the highest no. of crimes are ", (cCounter.most_common(5))
 
 
-#x=sortByKey(cCounter)
-#y=sortByKey(gCounter)
+	#print "counter of Crimes" 
+	#for key,value in cCounter.items():
+		#print("{value}".format(value=key))
 
 
-#for n in  range(1,78):
- #  list.append(gCounter[n], cCounter[n])
+	crimeAreaList= cCounter.values()
+	graffitiAreaList= gCounter.values()
 
-#for top in x: 
-	#print(top) 
-#	for inner in top: 
-#		print(inner) 
-#y=[z for z in x]
+	#print len(graffitiAreaList), len(crimeAreaList)
 
-#print "counter of Crimes" 
-#for key,value in cCounter.items():
-	#print ("{value}".format(value=key))
+	result = {}
 
-crimeAreaList= cCounter.values()
-graffitiAreaList= gCounter.values()
-
-print len(graffitiAreaList), len(crimeAreaList)
-
-result = {}
-
-'''for key in (cCounter.viewkeys() | gCounter.keys()):
-    if key in cCounter: result.setdefault(key, []).append(cCounter[key])
-    if key in gCounter: result.setdefault(key, []).append(gCounter[key])
-
-print result'''
+	for key in (cCounter.viewkeys() | gCounter.keys()):
+	    if key in cCounter: result.setdefault(key, []).append(cCounter[key])
+	    if key in gCounter: result.setdefault(key, []).append(gCounter[key])
+	#print result
 
 
-p=numpy.corrcoef(crimeAreaList, graffitiAreaList)[0, 1]
-print p
-#for n in  range(1,78):
- #   list.append(cCounter[n], gCounter[n])
+	p=numpy.corrcoef(crimeAreaList, graffitiAreaList)[0, 1]
+	print "correlation =", p
 
+main()
 
