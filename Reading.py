@@ -3,44 +3,54 @@ import collections
 
 #def graffiti (self): # reading graffiti date and community area
 
-graffiti_csv = open('Graffiti_Removal.csv',"rU")
-graffiti_reader = csv.reader(graffiti_csv)
+def graffitiCommunityArea(): 
 
+	graffiti_csv = open('Graffiti_Removal.csv',"rU")
+	graffiti_reader = csv.reader(graffiti_csv)
 		
-graffitiCommunityArea=[]
+	gCommunityArea=[]
+
+	for row in graffiti_reader:
+		gCommunityArea.append(row[6])
+
+	return  gCommunityArea
 
 
-for row in graffiti_reader:
-	graffitiCommunityArea.append(row[6])
 	
-counter1=collections.Counter(graffitiCommunityArea)
-#print(counter.keys())
+gCounter=collections.Counter(graffitiCommunityArea())
+#print(gCounter.keys())
 #print "counter of Graffiti"
-#print(counter1.most_common(77))
+#print(gCounter.most_common(77))
 
-
-
-crimes_csv = open('Crimes.csv',"rU")
-crimes_reader = csv.reader(crimes_csv)
-
+def crimeCommunityArea():
 		
-crimeCommunityArea=[]
+	crimes_csv = open('Crimes.csv',"rU")
+	crimes_reader = csv.reader(crimes_csv)
+
+	cCommunityArea=[]
+
+	for row in crimes_reader:
+		cCommunityArea.append(row[4])
+
+	return 	cCommunityArea
 
 
-for row in crimes_reader:
-	crimeCommunityArea.append(row[4])
+cCounter=collections.Counter(crimeCommunityArea())
+	#cCounter.most_common(5)
+	#print(counter.keys())
 
-counter2=collections.Counter(crimeCommunityArea)
-#counter2.most_common(5)
-#print(counter.keys())
 
-def sortByKey():
-	sortByKeyDict = sorted(counter2.items(), key= lambda t: t[0])
+
+
+def sortByKey(self):
+	sortByKeyDict = sorted(self.items(), key= lambda t: t[0])
 	print sortByKeyDict
 
-sortByKey()
+sortByKey(cCounter)
+
+
 #print "counter of Crimes" 
-#for key,value in counter2.items():
+#for key,value in cCounter.items():
 	#print ("{value}".format(value=key))
 
 
